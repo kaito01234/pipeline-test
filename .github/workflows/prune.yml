@@ -70,9 +70,10 @@ jobs:
 
               if (response.data.workflow_runs.length > 0) {
                 for (const run of response.data.workflow_runs) {
-                  if (now - Date.parse(run.created_at) > ms_in_day * days_to_expiration) {
-                    runs_to_delete.push([run.id, run.name]);
-                  }
+                  //if (now - Date.parse(run.created_at) > ms_in_day * days_to_expiration) {
+                  //  runs_to_delete.push([run.id, run.name]);
+                  //}
+                  runs_to_delete.push([run.id, run.name]);
                 }
               }
             }
@@ -88,5 +89,30 @@ jobs:
               });
             } catch (error) {
               // ignore errors
+            }
+          }
+
+    - name: ✂ Remove runs of the cleanup workflow itself
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ secrets.GH_ACTIONS_PERSONAL_ACCESS_TOKEN }}
+        script: |
+          const pages = 5;
+
+          let runs_to_delete = [];
+
+          for (let page = 0; page < pages; page += 1) {
+            let response = await github.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              page: page,
+              per_page: 100,
+              repo: context.repo.repo,
+              workflow_id: 'prune.yml'
+            });
+
+            if (response.data.workflow_runs.length > 0) {
+              for (const run of response.data.workflow_runs) {
+                  runs_to_delete.push([run.id, run.name]);
+              }
             }
           }
