@@ -118,7 +118,7 @@ jobs:
           }
           
           for (const run of runs_to_delete) {
-            console.log(`Run id ${run[0]} of '${run[1]}' is older than ${days_to_expiration} days. Deleting...`);
+            console.log(`Run id ${run[0]} of '${run[1]}' is prune. Deleting...`);
             try {
               await github.actions.deleteWorkflowRun({
                 owner: context.repo.owner,
