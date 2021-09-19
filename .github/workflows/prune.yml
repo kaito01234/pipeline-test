@@ -116,3 +116,16 @@ jobs:
               }
             }
           }
+          
+          for (const run of runs_to_delete) {
+            console.log(`Run id ${run[0]} of '${run[1]}' is older than ${days_to_expiration} days. Deleting...`);
+            try {
+              await github.actions.deleteWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: run[0]
+              });
+            } catch (error) {
+              // ignore errors
+            }
+          }
