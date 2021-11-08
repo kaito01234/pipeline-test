@@ -1,0 +1,11 @@
+name: Sleep test 2
+on:
+  workflow_dispatch:
+
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: [self-hosted, Linux]
+    steps:
+      - run: echo "sleep2します"
+      - run: sleep 60
+      - run: echo "sleep2終了"
