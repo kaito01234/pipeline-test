@@ -11,4 +11,5 @@ jobs:
       - run: echo ${GITHUB_REF}
       - run: echo "sha:"
       - run: echo ${GITHUB_SHA}
-      
+      - run: echo "event:"
+      - run: echo ${github.event.number}
