@@ -1,0 +1,14 @@
+name: github ref
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review, closed]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "ref:"
+      - run: echo ${GITHUB_REF}
+      - run: echo "sha:"
+      - run: echo ${GITHUB_SHA}
+      
