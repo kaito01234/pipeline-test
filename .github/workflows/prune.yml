@@ -28,21 +28,21 @@ jobs:
               status: 'skipped',
             });
 
-            const skipped = await github.actions.listWorkflowRunsForRepo({
+            const failure = await github.actions.listWorkflowRunsForRepo({
               owner: context.repo.owner,
               per_page: 100,
               repo: context.repo.repo,
               status: 'failure',
             });
 
-            const skipped = await github.actions.listWorkflowRunsForRepo({
+            const success = await github.actions.listWorkflowRunsForRepo({
               owner: context.repo.owner,
               per_page: 100,
               repo: context.repo.repo,
               status: 'success',
             });
 
-            for (const response of [cancelled, skipped]) {
+            for (const response of [cancelled, skipped, failure, success]) {
               for (const run of response.data.workflow_runs) {
                 console.log(`Run id ${run.id} of '${run.name}' is a cancelled/skipped run. Deleting...`);
                 await github.actions.deleteWorkflowRun({
