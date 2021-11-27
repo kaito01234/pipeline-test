@@ -19,7 +19,7 @@ jobs:
   deploy-actions-dummy:
     runs-on: [self-hosted, linux]
     steps:
-      - run: echo ${{ github.event}}
+      - run: $(echo '${{ toJSON(github) }}' | jq )
 
       - run: echo "sleep1します"
       - run: sleep 60
