@@ -1,5 +1,6 @@
 name: Service1 CI
 on:
+  workflow_dispatch:
   pull_request:
     types: [assigned, opened, synchronize, reopened]
     paths:
@@ -9,10 +10,16 @@ jobs:
   deploy-actions-dummy:
     runs-on: [self-hosted, linux]
     steps:
-      - run: $(echo '${{ toJSON(github) }}' | jq )
+      - run: echo "event - ${{ toJSON(github) }}"
 
       - run: echo "sleep1します"
       - run: sleep 60
 
       - run: echo "sleep2します"
       - run: sleep 60
+
+  call-workflow-passing-data:
+    uses: kaito01234/pipeline-test/.github/workflows/services_migration.yml@main
+    with:
+      target: call
+      migration_data: call

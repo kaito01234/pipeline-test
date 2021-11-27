@@ -14,12 +14,18 @@ on:
         options:
           - dev
           - e2e
+  workflow_call:
+    inputs:
+      target:
+        type: string
+      migration_data:
+        type: string
 
 jobs:
   deploy-actions-dummy:
     runs-on: [self-hosted, linux]
     steps:
-      - run: $(echo '${{ toJSON(github) }}' | jq )
+      - run: echo "event - ${{ toJSON(github) }}"
 
       - run: echo "sleep1します"
       - run: sleep 60
