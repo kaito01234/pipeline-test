@@ -26,7 +26,7 @@ on:
 jobs:
   deploy-actions-dummy:
     # runs-on: [self-hosted, linux]
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - run: echo "event - ${{ toJSON(inputs) }}"
 
