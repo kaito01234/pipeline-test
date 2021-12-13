@@ -10,7 +10,7 @@ on:
           - e2e
   push:
     branches:
-      - master
+      - main
     paths:
       - "apps/service1/**"
 
