@@ -9,7 +9,7 @@ jobs:
     name: echo inputs
     runs-on: ubuntu-latest
     steps:
-      - run: echo "event - ${{ toJSON(inputs) }}"
+      - run: echo "event - ${{ toJSON(github.event) }}"
 
   deploy1:
     if: github.event_name == 'issue_comment' &&
