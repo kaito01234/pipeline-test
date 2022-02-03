@@ -6,7 +6,7 @@ on:
     paths:
       - "apps/service1/**"
   schedule:
-    - cron: '25 01 * * *'
+    - cron: '20 02 * * *'
     
 jobs:
   deploy-actions-dummy:
