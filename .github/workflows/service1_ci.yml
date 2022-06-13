@@ -33,5 +33,5 @@ jobs:
                 '- aaaaaaaaaaa\n' +
                 '    - https://www.google.com\n' +
                 '- password\n' +
-                '    - \\aaaaa\SS$\こんにちは\testtest\test\漢字入力\漢字入力.txt'
+                '    - \\\\aaaaa\\SS$\\こんにちは\\testtest\\test\\漢字入力\\漢字入力.txt'
             })
