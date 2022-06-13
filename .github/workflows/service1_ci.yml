@@ -5,8 +5,6 @@ on:
     types: [assigned, opened, synchronize, reopened]
     paths:
       - "apps/service1/**"
-  schedule:
-    - cron: '20 02 * * *'
     
 jobs:
   deploy-actions-dummy:
@@ -23,8 +21,17 @@ jobs:
       - run: echo "sleep2します"
       - run: sleep 60
 
-  call-workflow-passing-data:
-    uses: kaito01234/pipeline-test/.github/workflows/services_migration.yml@main
-    with:
-      target: call
-      migration_data: call
+      - name: Post preview URL to Pull Request
+        uses: actions/github-script@v3
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '**aaaaaaaaaaaa!!**\n' +
+                '- aaaaaaaaaaa\n' +
+                '    - https://www.google.com\n' +
+                '- password\n' +
+                '    - \\aaaaa\SS$\こんにちは\testtest\test\漢字入力\漢字入力.txt'
+            })
