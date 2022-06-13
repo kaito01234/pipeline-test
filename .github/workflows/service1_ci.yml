@@ -16,10 +16,10 @@ jobs:
       - run: echo "event - ${{ toJSON(github) }}"
 
       - run: echo "sleep1します"
-      - run: sleep 60
+      - run: sleep 5
 
       - run: echo "sleep2します"
-      - run: sleep 60
+      - run: sleep 5
 
       - name: Post preview URL to Pull Request
         uses: actions/github-script@v3
@@ -33,5 +33,5 @@ jobs:
                 '- aaaaaaaaaaa\n' +
                 '    - https://www.google.com\n' +
                 '- password\n' +
-                '    - ```\\aaaaa\SS$\こんにちは\testtest\test\漢字入力\漢字入力.txt```'
+                '    - ```\\\\aaaaa\\SS$\\こんにちは\\testtest\\test\\漢字入力\\漢字入力.txt```'
             })
