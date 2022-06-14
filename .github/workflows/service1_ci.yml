@@ -32,6 +32,7 @@ jobs:
               body: '**aaaaaaaaaaaa!!**\n' +
                 '- aaaaaaaaaaa\n' +
                 '    - https://www.google.com\n' +
-                '- password\n' +
-                '    - ```\\\\aaaaa\\SS$\\こんにちは\\testtest\\test\\漢字入力\\漢字入力.txt```'
+                '\n' +
+                'パスワードはこちら👇\n' +
+                'https://www.google.com'
             })
